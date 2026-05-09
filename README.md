@@ -1,5 +1,2 @@
-<<<<<<< HEAD
+
 ## EM CONSTRUÇÃO
-=======
-## EM CONSTRUÇÃO
->>>>>>> 130695862a13bd3c1938a1096c27e35e1d6b607d
