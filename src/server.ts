@@ -4,6 +4,7 @@ import { validatorCompiler, serializerCompiler, type ZodTypeProvider, jsonSchema
 import fastifySwagger from "@fastify/swagger";
 import fastifySwaggerUi from "@fastify/swagger-ui";
 import { routes } from "./routes.js";
+import "dotenv/config";
 
 
 const app = fastify().withTypeProvider<ZodTypeProvider>();
@@ -27,7 +28,7 @@ app.register(fastifySwaggerUi, {
 })
 
 app.setErrorHandler((error, request, reply) =>{
-    reply.code(400).send({ message: Error})
+    reply.code(400).send({ message: error.message })
 })
 
 const start = async () => {
@@ -41,6 +42,7 @@ const start = async () => {
     })} catch (err) {
         process.exit(1);  
     }
+    
 };
 
 start();

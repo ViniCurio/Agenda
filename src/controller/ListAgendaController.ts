@@ -3,11 +3,11 @@ import { ListAgendaService } from '../service/ListAgendaServide.js';
 
 export class ListAgendaController {
     async handle(request: FastifyRequest, reply: FastifyReply) {
-        const listAgendaService = new ListAgendaService();
+        const listaAgendamentos = new ListAgendaService();
         
-        const agendas = await listAgendaService.execute();
+        const agendamentos = await listaAgendamentos.execute();
         
-        return reply.send(agendas);
+        reply.send(agendamentos);
     
     }
 

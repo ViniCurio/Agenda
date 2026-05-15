@@ -11,7 +11,7 @@ export class DeleteAgendaService {
             throw new Error("Informe um ID valido para deletar o agendamento");
         }
 
-        const findAgenda = await prismaClient.agendamentos.findFirst({
+        const findAgenda = await prismaClient.agends.findFirst({
             where: {
             id: id,
             }
@@ -21,7 +21,7 @@ export class DeleteAgendaService {
         throw new Error("Agendamento não encontrado");
         }
 
-        await prismaClient.agendamentos.delete({
+        await prismaClient.agends.delete({
             where: {
                 id: findAgenda.id
             }
