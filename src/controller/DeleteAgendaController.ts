@@ -7,6 +7,6 @@ export class DeleteAgendaController {
         const agendaService = new DeleteAgendaService();
 
         const agenda = await agendaService.execute({ id });
-        return reply.send(agenda);
+        reply.send(agenda);
     }
 }

@@ -4,6 +4,7 @@ import { CreateAgendaController } from "./controller/CreateAgendaController.js";
 import { ListAgendaController } from "./controller/ListAgendaController.js";
 import type { FastifyReply, FastifyRequest } from "fastify";
 import { DeleteAgendaController } from "./controller/DeleteAgendaController.js";
+import { jsonSchemaTransform } from "fastify-type-provider-zod";
 
 
 export async function routes(app: FastifyTypedInstance) {
@@ -33,7 +34,7 @@ export async function routes(app: FastifyTypedInstance) {
         return new ListAgendaController().handle(request, reply);
     });
 
-        app.get("/agenda", {
+        app.delete("/agenda", {
         schema: {
             tags: ["Deletar"],
             description: "delete agendamento",
@@ -51,19 +52,19 @@ export async function routes(app: FastifyTypedInstance) {
 
     app.post("/agendamento", {
         schema: {
-            tags: ["Agendamento"],
-            description: "Novo agendamento",
-            body: z.object({
-                nome: z.string(),
-                data: z.string().date(),
-                hora: z.string().time(),
-            }),
-            response: {
-                201: z.null().describe("Agendamento criado com sucesso"),
-
-            },
+           tags: ["Agendamento"],
+           description: "Novo agendamento",
+           body: z.object({
+               nome: z.string(),
+               data: z.string(),
+               hora: z.string(),
+           }),
+           response: {
+               201: z.null().describe("Agendamento criado com sucesso"),
+           
+           },
         }
-    },  async (request, reply) => {
+    }, async (request: FastifyRequest, reply: FastifyReply) => {
             return new CreateAgendaController().handle(request, reply);
     });
 

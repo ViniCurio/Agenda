@@ -6,7 +6,7 @@
 
 generator client {
   provider = "prisma-client"
-  output   = "../src/generated/prisma"
+  output   = "../src/generated"
 }
 
 datasource db {
@@ -16,10 +16,10 @@ datasource db {
 
 model Agends {
   id           String   @id @default(auto()) @map("_id") @db.ObjectId
-  name         String
-  date         DateTime
-  time         String
-  observations String?
+  nome         String
+  data         DateTime
+  hora         String
+  observacoes  String?
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 

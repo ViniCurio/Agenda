@@ -7,8 +7,8 @@ export class ListAgendaController {
         
         const agendas = await listAgendaService.execute();
         
-        return reply.send(agendas);
-    
+        reply.send(agendas);
+        
     }
 
 }

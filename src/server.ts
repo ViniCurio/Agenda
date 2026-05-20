@@ -6,10 +6,10 @@ import fastifySwaggerUi from "@fastify/swagger-ui";
 import { routes } from "./routes.js";
 
 
-const app = fastify().withTypeProvider<ZodTypeProvider>();
+const app = fastify();
 
-app.setValidatorCompiler(validatorCompiler);
-app.setSerializerCompiler(serializerCompiler);
+ app.setValidatorCompiler(validatorCompiler);
+ app.setSerializerCompiler(serializerCompiler);
 
 app.register(fastifySwagger, {
     openapi: {
@@ -27,7 +27,7 @@ app.register(fastifySwaggerUi, {
 })
 
 app.setErrorHandler((error, request, reply) =>{
-    reply.code(400).send({ message: Error})
+    reply.code(400).send({ message: error.message})
 })
 
 const start = async () => {
@@ -36,9 +36,9 @@ const start = async () => {
     await app.register(routes);
 
     try {
-        await app.listen({ port: 3030 }).then(() => {
+        await app.listen({ port: 3030 });
         console.log("Server is running on port 3030");
-    })} catch (err) {
+    } catch (err) {
         process.exit(1);  
     }
 };

@@ -4,18 +4,20 @@ import { error } from "node:console";
 
 export class CreateAgendaService {
     async execute({nome, data, hora}: Agendamentos) {
-
+         
+       
         if(!nome || !data || !hora){
-            throw new Error("Preencha todos os campos!")
-        }
+           throw new Error("Preencha todos os campos!")
+       }
         
-     const novoAgendamento = await prismaClient.agendamentos.create({
-        data: {
-            nome,
-            data,
-            hora
-        }
-     });
+        const novoAgendamento = await prismaClient.agends.create({
+            data: {
+                nome,
+                data,
+                hora
+            }
+        });
+        
         return novoAgendamento;
     }
  
