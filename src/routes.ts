@@ -27,6 +27,7 @@ export async function routes(app: FastifyTypedInstance) {
                     nome: z.string(),
                     data: z.string(),
                     hora: z.string(),
+                    observacoes: z.string(),
                 })).describe("Lista de agendados"),
             }
         }
@@ -52,19 +53,21 @@ export async function routes(app: FastifyTypedInstance) {
 
     app.post("/agendamento", {
         schema: {
-           tags: ["Agendamento"],
-           description: "Novo agendamento",
-           body: z.object({
-               nome: z.string(),
-               data: z.string(),
-               hora: z.string(),
-           }),
-           response: {
-               201: z.null().describe("Agendamento criado com sucesso"),
-           
-           },
+
+            tags: ["Agendamento"],
+            description: "Novo agendamento",
+            body: z.object({
+                nome: z.string(),
+                data: z.string(),
+                hora: z.string(),
+                observacoes: z.string(),
+            }),
+            response: {
+                201: z.null().describe("Agendamento criado com sucesso"),
+
+            },
         }
-    }, async (request: FastifyRequest, reply: FastifyReply) => {
+    },  async (request: FastifyRequest, reply: FastifyReply) => {   
             return new CreateAgendaController().handle(request, reply);
     });
 
